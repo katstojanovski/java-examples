@@ -1,4 +1,4 @@
-package com.threadseven.javaexamples.unittesting.mutableclass.repository;
+package com.threadseven.javaexamples.unittesting.mutableclass;
 
 public class Database {
 
