@@ -1,6 +1,6 @@
-package com.threadseven.javaexamples.unittesting.mutableclass.bad;
+package com.threadseven.javaexamples.expectedvalue.good;
 
-import com.threadseven.javaexamples.unittesting.mutableclass.Database;
+import com.threadseven.javaexamples.expectedvalue.Database;
 
 public class OrderRepository {
 
@@ -11,7 +11,7 @@ public class OrderRepository {
     private final Database database;
 
     public void save(final Order order) {
-        order.setCustomerId("someOtherCustomer");
         database.save(order);
     }
+
 }

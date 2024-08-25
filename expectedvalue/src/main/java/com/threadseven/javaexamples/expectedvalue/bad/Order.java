@@ -1,4 +1,4 @@
-package com.threadseven.javaexamples.unittesting.mutableclass.bad;
+package com.threadseven.javaexamples.expectedvalue.bad;
 
 public class Order {
 

@@ -1,4 +1,4 @@
-package com.threadseven.javaexamples.unittesting.mutableclass;
+package com.threadseven.javaexamples.expectedvalue;
 
 public class Database {
 

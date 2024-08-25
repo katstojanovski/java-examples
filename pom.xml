@@ -3,8 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
  
   <groupId>com.threadseven</groupId>
-  <artifactId>java-examples</artifactId>
+  <artifactId>javaexamples</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>expectedvalue</module>
+  </modules>
  
   <properties>
     <java.version>22</java.version>
@@ -13,11 +18,6 @@
   </properties>
  
   <dependencies>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.32</version>
-    </dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
