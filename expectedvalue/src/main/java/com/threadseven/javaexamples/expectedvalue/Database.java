@@ -1,8 +1,6 @@
 package com.threadseven.javaexamples.expectedvalue;
 
-public class Database {
+public interface Database {
 
-    public <T> void save(T data) {
-        // nothing really happens here
-    }    
+    public <T> void save(T data);
 }
