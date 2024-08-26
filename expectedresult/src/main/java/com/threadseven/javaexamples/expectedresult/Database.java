@@ -1,4 +1,4 @@
-package com.threadseven.javaexamples.expectedvalue;
+package com.threadseven.javaexamples.expectedresult;
 
 public interface Database {
 

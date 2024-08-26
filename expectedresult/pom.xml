@@ -9,7 +9,7 @@
   </parent>
 
   <groupId>com.threadseven.javaexamples</groupId>
-  <artifactId>expectedvalue</artifactId>
+  <artifactId>expectedresult</artifactId>
   <version>1.0-SNAPSHOT</version>
 
    

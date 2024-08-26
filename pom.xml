@@ -8,7 +8,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>expectedvalue</module>
+    <module>expectedresult</module>
     <module>assertinglists</module>
   </modules>
  
