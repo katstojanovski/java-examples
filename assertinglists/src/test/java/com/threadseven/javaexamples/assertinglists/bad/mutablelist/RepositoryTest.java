@@ -1,11 +1,9 @@
-package com.threadseven.javaexamples.assertinglists.bad;
+package com.threadseven.javaexamples.assertinglists.bad.mutablelist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,15 +28,17 @@ class RepositoryTest {
     }
 
     @Test
-    void successfullyReturnLineItems() {
+    void shouldReturnLineItemWithNumberAndSku() {
         final var orderId = "1234567890";
         final var lineItemNumber = 1;
         final var lineItemSku = "someSku";
         final var lineItem = new LineItem(lineItemNumber, lineItemSku);
         // mutable and not fixed size
-        final List<LineItem> lineItems = new ArrayList<LineItem>();
-        lineItems.add(lineItem);
-        final var order = new Order(orderId, lineItems);
+        final var order = new Order(orderId, new ArrayList<LineItem>() {
+            {
+                add(lineItem);
+            }
+        });
         when(database.getById(orderId)).thenReturn(order);
 
         final var actual = repository.getLineItemsByOrderId(orderId);
@@ -48,18 +48,18 @@ class RepositoryTest {
     }
 
     @Test
-    void successfullyReturnLineItems2() {
+    void shouldSuccessfullyReturnLineItems() {
         final var orderId = "1234567890";
-        final var lineItemNumber = 1;
-        final var lineItemSku = "someSku";
-        final var lineItem = new LineItem(lineItemNumber, lineItemSku);
-        final List<LineItem> lineItems = new ArrayList<LineItem>();
-        lineItems.add(lineItem);
-        final var order = new Order(orderId, lineItems);
+        final var lineItem = new LineItem(1, "someSku");
+        final var order = new Order(orderId, new ArrayList<LineItem>() {
+            {
+                add(lineItem);
+            }
+        });
         when(database.getById(orderId)).thenReturn(order);
 
         final var actual = repository.getLineItemsByOrderId(orderId);
 
         assertEquals(order.lineItems(), actual);
-    }    
+    }
 }

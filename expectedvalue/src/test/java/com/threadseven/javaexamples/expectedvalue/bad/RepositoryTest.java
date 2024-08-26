@@ -12,22 +12,22 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.threadseven.javaexamples.expectedvalue.Database;
 
 @ExtendWith(MockitoExtension.class)
-class OrderRepositoryTest {
+class RepositoryTest {
 
-    private OrderRepository orderRepository;
+    private Repository repository;
 
     @Mock
     private Database database;
 
     @BeforeEach
     void init() {
-        orderRepository = new OrderRepository(database);
+        repository = new Repository(database);
     }
 
     @Test
     void shouldSuccessfullySaveOrderToDatabase() {
         final var order = new Order("1234567890", "someCustomer");
-        orderRepository.save(order);
+        repository.save(order);
         verify(database, times(1)).save(order);
     }
 }

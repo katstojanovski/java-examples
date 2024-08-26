@@ -1,4 +1,4 @@
-package com.threadseven.javaexamples.assertinglists.bad2;
+package com.threadseven.javaexamples.assertinglists.bad.fixedlist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -29,11 +29,10 @@ class RepositoryTest {
     }
 
     @Test
-    void successfullyReturnLineItems() {
+    void shouldReturnListOfSizeOne() {
         final var orderId = "1234567890";
-        final var lineItemNumber = 1;
         final var lineItemSku = "someSku";
-        final var lineItem = new LineItem(lineItemNumber, lineItemSku);
+        final var lineItem = new LineItem(1, lineItemSku);
         // mutable, but fixed size
         final var order = new Order(orderId, Arrays.asList(lineItem));
         when(database.getById(orderId)).thenReturn(order);
@@ -45,11 +44,9 @@ class RepositoryTest {
     }
 
     @Test
-    void successfullyReturnLineItems2() {
+    void shouldSuccessfullyReturnLineItems() {
         final var orderId = "1234567890";
-        final var lineItemNumber = 1;
-        final var lineItemSku = "someSku";
-        final var lineItem = new LineItem(lineItemNumber, lineItemSku);
+        final var lineItem = new LineItem(1, "someSku");
         final var order = new Order(orderId, Arrays.asList(lineItem));
         when(database.getById(orderId)).thenReturn(order);
 
@@ -57,5 +54,5 @@ class RepositoryTest {
 
         assertEquals(order.lineItems(), actual);
     }
-    
+
 }

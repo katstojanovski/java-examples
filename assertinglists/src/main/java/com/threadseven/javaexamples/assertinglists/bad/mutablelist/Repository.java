@@ -1,4 +1,4 @@
-package com.threadseven.javaexamples.assertinglists.bad;
+package com.threadseven.javaexamples.assertinglists.bad.mutablelist;
 
 import java.util.List;
 

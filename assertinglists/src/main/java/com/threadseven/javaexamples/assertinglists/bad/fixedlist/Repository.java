@@ -1,4 +1,4 @@
-package com.threadseven.javaexamples.assertinglists.bad2;
+package com.threadseven.javaexamples.assertinglists.bad.fixedlist;
 
 import java.util.List;
 
