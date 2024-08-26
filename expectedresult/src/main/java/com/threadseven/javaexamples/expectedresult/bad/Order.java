@@ -1,4 +1,4 @@
-package com.threadseven.javaexamples.expectedvalue.bad;
+package com.threadseven.javaexamples.expectedresult.bad;
 
 public class Order {
 

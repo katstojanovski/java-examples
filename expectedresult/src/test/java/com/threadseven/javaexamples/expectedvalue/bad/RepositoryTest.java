@@ -1,4 +1,4 @@
-package com.threadseven.javaexamples.expectedvalue.bad;
+package com.threadseven.javaexamples.expectedresult.bad;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.threadseven.javaexamples.expectedvalue.Database;
+import com.threadseven.javaexamples.expectedresult.Database;
 
 @ExtendWith(MockitoExtension.class)
 class RepositoryTest {

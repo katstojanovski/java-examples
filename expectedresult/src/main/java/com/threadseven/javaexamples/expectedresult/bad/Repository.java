@@ -1,6 +1,6 @@
-package com.threadseven.javaexamples.expectedvalue.good;
+package com.threadseven.javaexamples.expectedresult.bad;
 
-import com.threadseven.javaexamples.expectedvalue.Database;
+import com.threadseven.javaexamples.expectedresult.Database;
 
 public class Repository {
 
@@ -11,7 +11,7 @@ public class Repository {
     private final Database database;
 
     public void save(final Order order) {
+        order.setCustomerId("someOtherCustomer");
         database.save(order);
     }
-
 }
