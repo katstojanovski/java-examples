@@ -17,7 +17,6 @@ import com.threadseven.javaexamples.assertinglists.Order;
 
 @ExtendWith(MockitoExtension.class)
 class RepositoryTest {
-
     private Repository repository;
 
     @Mock
