@@ -9,7 +9,7 @@
 
   <modules>
     <module>expectedvalue</module>
-    <module>assertinglists</module>
+    <module>assertlistequals</module>
   </modules>
  
   <properties>
