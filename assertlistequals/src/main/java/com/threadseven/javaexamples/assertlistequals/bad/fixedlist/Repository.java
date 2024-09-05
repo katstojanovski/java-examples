@@ -15,7 +15,7 @@ public class Repository {
 
     public List<LineItem> getLineItemsByOrderId(final String id) {
         final Order order = database.getById(id);
-        order.lineItems().set(0, new LineItem(999, "someSku"));
+        order.lineItems().set(0, new LineItem(999, "someOtherSku"));
         return order.lineItems();
     }
 }
