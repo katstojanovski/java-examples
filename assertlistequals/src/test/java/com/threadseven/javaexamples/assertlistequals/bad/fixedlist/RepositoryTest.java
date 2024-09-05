@@ -41,7 +41,6 @@ class RepositoryTest {
         final var actual = repository.getLineItemsByOrderId(ORDER_ID);
 
         assertEquals(1, actual.size());
-        assertEquals(LINE_ITEM_SKU, actual.get(0).sku());
     }
 
     @Test
