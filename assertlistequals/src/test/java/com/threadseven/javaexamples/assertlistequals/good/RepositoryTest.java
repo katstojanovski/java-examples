@@ -17,6 +17,11 @@ import com.threadseven.javaexamples.assertlistequals.Order;
 
 @ExtendWith(MockitoExtension.class)
 class RepositoryTest {
+
+    private static final String LINE_ITEM_SKU = "someSku";
+    private static final String ORDER_ID = "1234567890";
+    private static final int LINE_ITEM_NUMBER = 1;
+
     private Repository repository;
 
     @Mock
@@ -29,16 +34,11 @@ class RepositoryTest {
 
     @Test
     void successfullyReturnLineItems() {
-        final var orderId = "1234567890";
-        final var lineItemNumber = 1;
-        final var lineItemSku = "someSku";
-        final var lineItem = new LineItem(lineItemNumber, lineItemSku);
-        final var order = new Order(orderId, List.of(lineItem));
-        when(database.getById(orderId)).thenReturn(order);
+        final var order = new Order(ORDER_ID, List.of(new LineItem(LINE_ITEM_NUMBER, LINE_ITEM_SKU)));
+        when(database.getById(ORDER_ID)).thenReturn(order);
+        final var expected = List.of(new LineItem(LINE_ITEM_NUMBER, LINE_ITEM_SKU));
 
-        final var expected = List.of(new LineItem(lineItemNumber, lineItemSku));
-
-        final var actual = repository.getLineItemsByOrderId(orderId);
+        final var actual = repository.getLineItemsByOrderId(ORDER_ID);
 
         assertEquals(expected, actual);
     }    

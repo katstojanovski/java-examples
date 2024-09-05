@@ -17,6 +17,10 @@ import com.threadseven.javaexamples.assertlistequals.Order;
 @ExtendWith(MockitoExtension.class)
 class RepositoryTest {
 
+    private static final String LINE_ITEM_SKU = "someSku";
+    private static final String ORDER_ID = "1234567890";
+    private static final int LINE_ITEM_NUMBER = 1;
+
     private Repository repository;
 
     @Mock
@@ -29,36 +33,32 @@ class RepositoryTest {
 
     @Test
     void shouldReturnLineItemWithNumberAndSku() {
-        final var orderId = "1234567890";
-        final var lineItemNumber = 1;
-        final var lineItemSku = "someSku";
-        final var lineItem = new LineItem(lineItemNumber, lineItemSku);
+        final var lineItem = new LineItem(LINE_ITEM_NUMBER, LINE_ITEM_SKU);
         // mutable and resizable
-        final var order = new Order(orderId, new ArrayList<LineItem>() {
+        final var order = new Order(ORDER_ID, new ArrayList<LineItem>() {
             {
                 add(lineItem);
             }
         });
-        when(database.getById(orderId)).thenReturn(order);
+        when(database.getById(ORDER_ID)).thenReturn(order);
 
-        final var actual = repository.getLineItemsByOrderId(orderId);
+        final var actual = repository.getLineItemsByOrderId(ORDER_ID);
 
-        assertEquals(lineItemNumber, actual.get(0).number());
-        assertEquals(lineItemSku, actual.get(0).sku());
+        assertEquals(LINE_ITEM_NUMBER, actual.get(0).number());
+        assertEquals(LINE_ITEM_SKU, actual.get(0).sku());
     }
 
     @Test
     void shouldSuccessfullyReturnLineItems() {
-        final var orderId = "1234567890";
-        final var lineItem = new LineItem(1, "someSku");
-        final var order = new Order(orderId, new ArrayList<LineItem>() {
+        final var lineItem = new LineItem(1, LINE_ITEM_SKU);
+        final var order = new Order(ORDER_ID, new ArrayList<LineItem>() {
             {
                 add(lineItem);
             }
         });
-        when(database.getById(orderId)).thenReturn(order);
+        when(database.getById(ORDER_ID)).thenReturn(order);
 
-        final var actual = repository.getLineItemsByOrderId(orderId);
+        final var actual = repository.getLineItemsByOrderId(ORDER_ID);
 
         assertEquals(order.lineItems(), actual);
     }
