@@ -1,6 +1,5 @@
 package com.threadseven.javaexamples.expectedvalue.bad;
 
-import com.threadseven.javaexamples.expectedvalue.Database;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -8,8 +7,9 @@ public class Repository {
 
     private final Database database;
 
-    public void save(final Order order) {
+    public Order getOrderById(final String orderId) {
+        final var order = database.getOrderById(orderId);
         order.setCustomerId("someOtherCustomer");
-        database.save(order);
+        return order;
     }
 }
