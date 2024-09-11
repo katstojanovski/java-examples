@@ -23,14 +23,13 @@ class RepositoryTest {
     }
 
     @Test
-    void shouldSuccessfullySaveOrderToDatabase() {
+    void shouldSuccessfullyReturnOrderFromDatabase() {
         final var orderId = "1234567890";
         final var order = new Order(orderId, "someCustomer");
         when(database.getOrderById(orderId)).thenReturn(order);
 
-        var actual = repository.getOrderById(orderId);
+        final var actual = repository.getOrderById(orderId);
 
         assertEquals(order, actual);
-        
     }
 }

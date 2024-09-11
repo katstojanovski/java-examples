@@ -1,8 +1,6 @@
 package com.threadseven.javaexamples.expectedvalue.good;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +23,7 @@ class RepositoryTest {
     }
 
     @Test
-    void shouldSuccessfullySaveOrderToDatabase() {
+    void shouldSuccessfullyReturnOrderFromDatabase() {
         final var orderId = "1234567890";
         final var customerId = "someCustomer";
         final var order = new Order(orderId, customerId);

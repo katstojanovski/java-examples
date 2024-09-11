@@ -12,15 +12,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.threadseven.javaexamples.assertlistequals.Database;
-import com.threadseven.javaexamples.assertlistequals.LineItem;
 import com.threadseven.javaexamples.assertlistequals.Order;
 
 @ExtendWith(MockitoExtension.class)
 class RepositoryTest {
-
-    private static final String LINE_ITEM_SKU = "someSku";
-    private static final String ORDER_ID = "1234567890";
-    private static final int LINE_ITEM_NUMBER = 1;
 
     private Repository repository;
 
@@ -33,13 +28,14 @@ class RepositoryTest {
     }
 
     @Test
-    void successfullyReturnLineItems() {
-        final var order = new Order(ORDER_ID, List.of(new LineItem(LINE_ITEM_NUMBER, LINE_ITEM_SKU)));
-        when(database.getById(ORDER_ID)).thenReturn(order);
-        final var expected = List.of(new LineItem(LINE_ITEM_NUMBER, LINE_ITEM_SKU));
+    void shouldSuccessfullyReturnOrders() {
+        final var orderId = "1234567890";
+        final var order = new Order(orderId);
+        when(database.getOrders()).thenReturn(List.of(order));
 
-        final var actual = repository.getLineItemsByOrderId(ORDER_ID);
+        final var actual = repository.getOrders();
 
+        final var expected = List.of(new Order(orderId));
         assertEquals(expected, actual);
     }    
 }

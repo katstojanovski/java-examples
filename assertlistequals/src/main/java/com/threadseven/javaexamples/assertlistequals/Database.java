@@ -1,6 +1,8 @@
 package com.threadseven.javaexamples.assertlistequals;
 
+import java.util.List;
+
 public interface Database {
 
-    public Order getById(String id);
+    public List<Order> getOrders();
 }

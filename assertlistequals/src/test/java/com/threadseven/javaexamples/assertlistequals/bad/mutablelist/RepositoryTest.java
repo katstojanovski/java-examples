@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,15 +13,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.threadseven.javaexamples.assertlistequals.Database;
-import com.threadseven.javaexamples.assertlistequals.LineItem;
 import com.threadseven.javaexamples.assertlistequals.Order;
 
 @ExtendWith(MockitoExtension.class)
 class RepositoryTest {
-
-    private static final String LINE_ITEM_SKU = "someSku";
-    private static final String ORDER_ID = "1234567890";
-    private static final int LINE_ITEM_NUMBER = 1;
 
     private Repository repository;
 
@@ -32,34 +29,35 @@ class RepositoryTest {
     }
 
     @Test
-    void shouldReturnLineItemWithNumberAndSku() {
-        final var lineItem = new LineItem(LINE_ITEM_NUMBER, LINE_ITEM_SKU);
+    void shouldReturnOrderWithId() {
+        final var orderId = "1234567890";
+        final var order = new Order(orderId);
         // mutable and resizable
-        final var order = new Order(ORDER_ID, new ArrayList<LineItem>() {
+        final var orders = new ArrayList<Order>() {
             {
-                add(lineItem);
+                add(order);
             }
-        });
-        when(database.getById(ORDER_ID)).thenReturn(order);
+        };
+        when(database.getOrders()).thenReturn(orders);
 
-        final var actual = repository.getLineItemsByOrderId(ORDER_ID);
+        final var actual = repository.getOrders();
 
-        assertEquals(LINE_ITEM_NUMBER, actual.get(0).number());
-        assertEquals(LINE_ITEM_SKU, actual.get(0).sku());
+        assertEquals(orderId, actual.get(0).id());
     }
 
     @Test
-    void shouldSuccessfullyReturnLineItems() {
-        final var lineItem = new LineItem(1, LINE_ITEM_SKU);
-        final var order = new Order(ORDER_ID, new ArrayList<LineItem>() {
+    void shouldSuccessfullyReturnOrders() {
+        final var order = new Order("1234567890");
+        // mutable and resizable
+        final var orders = new ArrayList<Order>() {
             {
-                add(lineItem);
+                add(order);
             }
-        });
-        when(database.getById(ORDER_ID)).thenReturn(order);
+        };
+        when(database.getOrders()).thenReturn(orders);
 
-        final var actual = repository.getLineItemsByOrderId(ORDER_ID);
+        final var actual = repository.getOrders();
 
-        assertEquals(order.lineItems(), actual);
+        assertEquals(orders, actual);
     }
 }

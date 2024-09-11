@@ -12,14 +12,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.threadseven.javaexamples.assertlistequals.Database;
-import com.threadseven.javaexamples.assertlistequals.LineItem;
 import com.threadseven.javaexamples.assertlistequals.Order;
 
 @ExtendWith(MockitoExtension.class)
 class RepositoryTest {
-
-    private static final String LINE_ITEM_SKU = "someSku";
-    private static final String ORDER_ID = "1234567890";
 
     private Repository repository;
 
@@ -33,25 +29,25 @@ class RepositoryTest {
 
     @Test
     void shouldReturnListOfSizeOne() {
-        final var lineItem = new LineItem(1, LINE_ITEM_SKU);
+        final var order = new Order("1234567890");
         // mutable, but fixed size
-        final var order = new Order(ORDER_ID, Arrays.asList(lineItem));
-        when(database.getById(ORDER_ID)).thenReturn(order);
+        final var orders = Arrays.asList(order);
+        when(database.getOrders()).thenReturn(orders);
 
-        final var actual = repository.getLineItemsByOrderId(ORDER_ID);
+        final var actual = repository.getOrders();
 
         assertEquals(1, actual.size());
     }
 
     @Test
-    void shouldSuccessfullyReturnLineItems() {
-        final var lineItem = new LineItem(1, LINE_ITEM_SKU);
-        final var order = new Order(ORDER_ID, Arrays.asList(lineItem));
-        when(database.getById(ORDER_ID)).thenReturn(order);
+    void shouldSuccessfullyReturnOrders() {
+        final var order = new Order("1234567890");
+        final var orders = Arrays.asList(order);
+        when(database.getOrders()).thenReturn(Arrays.asList(order));
 
-        final var actual = repository.getLineItemsByOrderId(ORDER_ID);
+        final var actual = repository.getOrders();
 
-        assertEquals(order.lineItems(), actual);
+        assertEquals(orders, actual);
     }
 
 }
